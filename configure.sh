@@ -121,3 +121,6 @@ echo 4096 > /proc/sys/net/core/somaxconn
 echo 4096 > /proc/sys/net/ipv4/tcp_max_syn_backlog
 
 echo tsc > /sys/devices/system/clocksource/clocksource0/current_clocksource
+
+# CONTRACK Hashsize (Calcul HASHSIZE: CONNTRACK_MAX/8)
+echo '131072' > /sys/module/nf_conntrack/parameters/hashsize
