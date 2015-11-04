@@ -1,3 +1,5 @@
+# Primary, install ifenslave-2.6 and add in /etc/modules loop and bonding entries
+
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
