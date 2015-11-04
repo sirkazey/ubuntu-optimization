@@ -1,0 +1,47 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Admin interface
+auto em1
+iface em1 inet static
+        address xxx.xxx.xxx.xxx
+        netmask xxx.xxx.xxx.xxx
+        gateway xxx.xxx.xxx.xxx
+        dns-nameservers xxx.xxx.xxx.xxx
+        dns-search dns.example
+
+# Project interface - interface 1
+auto p4p1
+iface p4p1 inet manual
+        bond-master bond0
+
+# Project interface - interface 2
+auto p4p2
+iface p4p2 inet manual
+        bond-master bond0
+
+# Link aggregat
+auto bond0
+iface bond0 inet manual
+        bond-mode 802.3ad
+        bond-miimon 100
+        bond-lacp-rate 1
+        bond-slaves none
+
+# Project bridge
+auto br-project
+iface br-project inet manual
+        up ifconfig $IFACE 0.0.0.0 up
+        up ip link set $IFACE promisc on
+        down ip link set $IFACE promisc off
+        down ifconfig $IFACE down
+        bridge_ports bond0
+        bridge_fd 9
+        bridge_hello 2
+        bridge_maxage 12
+        bridge_stp off
+        bridge_maxwait 0
